@@ -1,3 +1,107 @@
 <h1>
   {{title}}
 </h1>
+
+<div class="secformclass">
+
+<div class="divformcont">
+    <h1 class="pagetitle">אנונימוס - טופס הזנת פרטים לתרומה</h1>
+    <a class="backlink w-button w--current" href="/">חזרה</a>
+    
+<div class="formsection w-form">
+  
+<form action="http://nodapipub.azurewebsites.net/anno/PerformDonation" class="w-clearfix" data-name="Donation" id="Donation" method="post" name="wf-form-Donation">
+
+<input class="firstname inputclass w-input" data-name="FirstName" id="FirstName" maxlength="256" name="FirstName" placeholder="שם פרטי" type="text">
+<input class="inputclass lastname w-input" data-name="LastName" id="LastName" maxlength="256" name="LastName" placeholder="שם משפחה" required="required" type="text">
+<input class="inputclass phone w-input" data-name="Phone" id="Phone" maxlength="256" name="Phone" placeholder="טלפון" type="text">
+<input class="email inputclass w-input" data-name="Email" id="Email" maxlength="256" name="Email" placeholder="דוא״ל" type="text">
+<label class="status" id="emailStatus">כתובת דוא״ל לא חוקית</label>
+
+<label class="idlabel" for="donarid">מס׳ תעודת זהות:</label>
+<input class="idclass inputclass w-input" data-name="donarid" id="donarid" maxlength="256" name="donarid" placeholder="נא לציין תעודת זהות בספרות בלבד, מינימום 9 ספרות" type="text">
+<label class="status" for="cardOwnerID" id="IDNumStatus">מספר תעודת זהות לא תקין</label>
+<input class="hidden w-input" data-name="cardOwnerID" id="cardOwnerID" maxlength="256" name="cardOwnerID" placeholder="Example Text" type="text">
+
+<input class="inputclass w-input" data-name="Address" id="Address" maxlength="256" name="Address" placeholder="כתובת" type="text">
+
+<div class="causesecclass w-clearfix" id="CauseSection" (change)="CauseSection_changed()" > 
+
+    <label class="causelabel inputlabel" for="Project">בחרו פרויקט שתרומתכם תקדם:</label>
+
+    <select class="selectclass w-select" data-name="Project" id="Project" name="Project">
+        <option value="כללי">כללי</option>
+        <option value="קידום חקיקה להגנת בעלי-חיים">קידום חקיקה להגנת בעלי-חיים</option>
+        <option value="חקירות סמויות במשקים תעשייתיים">חקירות סמויות במשקים תעשייתיים</option>
+        <option value="הצלת תרנגולות מהשמדה">הצלת תרנגולות מהשמדה</option>
+        <option value="הרצאות לנוער חיילים ומבוגרים">הרצאות לנוער חיילים ומבוגרים</option>
+        <option value="אתגר 22+ למעבר לתזונה טבעונית">אתגר 22+ למעבר לתזונה טבעונית</option>
+    </select>
+    
+</div>
+
+<label class="inputlabel" for="Donation_Type_id" id="Donation_Type_Label">סוג תרומה</label>
+<select class="selectclass w-select" data-name="Donation_Type_id" (change)="Donation_Type_id_changed()" id="Donation_Type_id" name="Donation_Type_id">
+    <option value="0">תרומה חד פעמית</option>
+    <option value="2">תרומה חד פעמית בתשלומים</option>
+    <option value="1">תרומה חודשית מתחדשת</option>
+</select>
+
+<label class="inputlabel numofpaymentslabel" for="numPayments" id="numPaymentsLabel">מספר תשלומים</label>
+<select class="numofpayments selectclass w-select" data-name="numPayments" id="numPayments" name="numPayments">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+    <option value="12">12</option>
+</select>
+
+<label class="datetochargelclass inputlabel" for="DateToCharge" id="DateToChargeLabel">מועד חיוב האשראי</label>
+<select class="datetochargeclass selectclass w-select" data-name="DateToCharge" id="DateToCharge" name="DateToCharge">
+    <option value="2">02 לחודש</option>
+    <option value="10">10 לחודש</option>
+    <option value="15">15 לחודש</option>
+</select>
+
+<label class="inputlabel" for="package" id="packageLabel">סכום התרומה</label>
+<select class="selectclass w-select" data-name="package" id="package" name="package" (change)="Package_changed()" required="required">
+    <option value="30">30</option>
+    <option value="50">50</option>
+    <option value="80">80</option>
+    <option value="100">100</option>
+    <option value="200">200</option>
+    <option value="0">אחר</option>
+</select>
+
+<input class="amountelse w-input" data-name="AmountObj" id="AmountObj" (change)="AmountObj_changed()" maxlength="256" name="AmountObj" placeholder="AmountElseObj" type="text">
+<div class="sfdcbtn" (click)="SFDCcmd_click()" id="SFDCcmd">המשך להזנת כרטיס אשראי</div>
+
+<input class="submitbtn w-button" data-wait="נא להמתין..." id="cmdPayNow" type="submit" value="המשך להזנת פרטי אשראי">
+<input class="pleasew submitbtn w-button" data-wait="Please wait..." id="cmdPayNowPleaseWait" type="submit" value="המערכת מבצעת בדיקת נתונים..">
+<input class="hidden inputclass w-input" data-name="UserName" id="UserName" maxlength="256" name="UserName" placeholder="UserName" type="text">
+<input class="hidden inputclass w-input" data-name="AnnoEmp" id="AnnoEmp" maxlength="256" name="AnnoEmp" placeholder="תורם" type="text">
+<input class="hidden w-input" data-name="ErrorRedirectUrl" id="ErrorRedirectUrl" maxlength="256" name="ErrorRedirectUrl" placeholder="ErrorRedirectUrl" type="text">
+<input class="hidden w-input" data-name="SuccessRedirectUrl" id="SuccessRedirectUrl" maxlength="256" name="SuccessRedirectUrl" placeholder="SuccessRedirectUrl" type="text">
+<input class="hidden inputclass w-input" data-name="DonationNumber" id="DonationNumber" maxlength="256" name="DonationNumber" placeholder="DonationNumber" type="text">
+<input class="hidden w-input" data-name="IndicatorUrl" id="IndicatorUrl" maxlength="256" name="IndicatorUrl" placeholder="IndicatorUrl" type="text">
+<input class="hidden w-input" data-name="TerminalNumber" id="TerminalNumber" maxlength="256" name="TerminalNumber" placeholder="Terminal" type="text">
+<input class="hidden w-input" data-name="Operation" id="Operation" maxlength="256" name="Operation" placeholder="Operation" type="text">
+<input class="hidden w-input" data-name="APILevel" id="APILevel" maxlength="256" name="APILevel" placeholder="APILevel" type="text">
+<input class="hidden w-input" data-name="ProductName" id="ProductName" maxlength="256" name="ProductName" placeholder="ProductName" required="required" type="text">
+<input class="hidden w-input" data-name="codepage" id="codepage" maxlength="256" name="codepage" placeholder="codepage" required="required" type="text">
+<input class="hidden w-input" data-name="Language" id="Language" maxlength="256" name="Language" placeholder="Language" required="required" type="text">
+<input class="hidden w-input" data-name="CoinID" id="CoinID" maxlength="256" name="CoinID" placeholder="CoinID" type="text"><input class="hidden w-input" data-name="SumToBill" id="SumToBill" maxlength="256" name="SumToBill" placeholder="SumToBill" type="text">
+<input class="hidden w-input" data-name="DonationType" id="DonationType" maxlength="256" name="DonationType" placeholder="DonationType" type="text">
+<input class="hidden w-input" data-name="HideCreditCardUserId" id="HideCreditCardUserId" maxlength="256" name="HideCreditCardUserId" placeholder="HideCreditCardUserId" type="text">
+<input class="hidden w-input" data-name="HideCVV" id="HideCVV" maxlength="256" name="HideCVV" placeholder="HideCVV" type="text">
+</form>
+
+
+<app-nodapi></app-nodapi>

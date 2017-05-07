@@ -1,0 +1,433 @@
+.logo {
+  float: right;
+}
+
+.headersec {
+  background-color: #b9c0c0;
+}
+
+.formsection {
+  width: 50%;
+  margin-top: 2%;
+  margin-left: 25%;
+}
+
+.inputclass {
+  direction: rtl;
+  width: 96%;
+  float: right;
+    height: 22px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333333;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+}
+
+.inputclass.firstname {
+  width: 45%;
+  float: right;
+}
+
+.inputclass.lastname {
+  width: 45%;
+  float: left;
+  clear: none;
+}
+
+.inputclass.phone {
+  width: 45%;
+  float: right;
+}
+
+.inputclass.email {
+  width: 45%;
+  float: left;
+}
+
+.inputclass.idclass {
+  width: 71%;
+}
+
+.submitbtn {
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  display: block;
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #fff;
+  opacity: 0;
+  color: #000;
+  font-size: 18px;
+  text-align: center;
+}
+
+.submitbtn.pleasew {
+  position: absolute;
+  left: 40%;
+  right: 0px;
+  bottom: 2%;
+  display: none;
+  background-color: #15df1d;
+  opacity: 0;
+  color: #fff;
+}
+
+.inputlabel {
+  width: 25%;
+  margin-top: 5px;
+  padding-right: 5px;
+  float: right;
+  direction: rtl;
+  color: #1bd9e0;
+  font-size: 15px;
+  font-weight: 400;
+  text-align: right;
+}
+
+.inputlabel.causelabel {
+  width: 25%;
+  height: 50px;
+  margin-top: 3px;
+  font-size: 15px;
+}
+
+.inputlabel.numofpaymentslabel {
+  display: none;
+}
+
+.inputlabel.datetochargelclass {
+  display: none;
+}
+
+.selectclass {
+  width: 70%;
+  direction: rtl;
+    height: 38px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    line-height: 1.42857143;
+    color: #333333;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;  
+}
+
+.selectclass.selectcause {
+  overflow: hidden;
+  width: 100%;
+  height: 120px;
+  color: #999;
+  font-size: 15px;
+}
+
+.selectclass.numofpayments {
+  display: none;
+}
+
+.selectclass.datetochargeclass {
+  display: none;
+}
+
+.iframeclass {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.secclass {
+  position: fixed;
+  display: none;
+}
+
+.secformclass {
+  position: fixed;
+  left: 0px;
+  top: 0%;
+  z-index: 10;
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .71);
+}
+
+.divformcont {
+  margin-top: 5%;
+  background-color: rgba(0, 152, 255, 0);
+}
+
+.pagetitle {
+  margin-bottom: 20px;
+  color: #fff;
+  font-weight: 400;
+  text-align: center;
+}
+
+.body {
+  overflow: hidden;
+}
+
+.hidden {
+  display: block;
+  height: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  opacity: 0;
+}
+
+.causeslist {
+  position: fixed;
+  left: 2%;
+  top: 8%;
+  z-index: 12;
+  width: 15%;
+  height: 150px;
+  margin-top: 6%;
+  margin-left: 3%;
+  background-color: transparent;
+  text-align: center;
+}
+
+.causeimg {
+  display: none;
+  max-width: 150px;
+  margin-bottom: 10px;
+  opacity: 1;
+  text-align: center;
+}
+
+.causesecclass {
+  width: 100%;
+  float: right;
+}
+
+.successmessage {
+  margin-top: 30px;
+  margin-bottom: 29px;
+  font-size: 28px;
+  text-align: center;
+}
+
+.sfdcbtn {
+  position: absolute;
+  z-index: 1000;
+  display: block;
+  width: 30%;
+  height: 35px;
+  margin-top: 16px;
+  margin-left: 10%;
+  padding-top: 12px;
+  border-radius: 10px;
+  background-color: #0c15e9;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.backlink {
+  position: fixed;
+  left: 5px;
+  bottom: 5px;
+  display: block;
+  width: 70px;
+  height: 50px;
+  padding-top: 23px;
+  float: none;
+  border-radius: 8px;
+  background-color: #0bb7cf;
+  font-size: 15px;
+  line-height: 0px;
+  text-align: center;
+    color: white;
+    border: 0;
+    line-height: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;  
+}
+
+/*
+.backlink {
+  left: 2%;
+  bottom: 3%;
+}
+*/
+
+.amountelse {
+  display: none;
+  width: 70%;
+}
+
+.idlabel {
+  width: 25%;
+  float: right;
+  direction: rtl;
+  color: #1bd9e0;
+  font-size: 15px;
+}
+
+.status {
+  display: none;
+  font-family: 'Open Sans', sans-serif;
+  color: red;
+  font-weight: 400;
+}
+
+.loader {
+  display: block;
+  margin-top: 20%;
+  margin-right: auto;
+  margin-left: 45%;
+}
+
+.div-block {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 3000;
+  width: 100%;
+  height: 100%;
+}
+
+.div-block.shading {
+  display: none;
+  background-color: rgba(0, 0, 0, .8);
+  text-align: center;
+}
+
+.waittextclass {
+  position: absolute;
+  left: 0px;
+  top: auto;
+  right: auto;
+  bottom: 10%;
+  width: 100%;
+  height: 100px;
+  padding-top: 38px;
+  background-color: transparent;
+  direction: rtl;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  font-size: 20px;
+}
+
+@media (max-width: 991px) {
+  .formsection {
+    width: 80%;
+    margin-left: 10%;
+  }
+  .submitbtn {
+    margin-top: 31px;
+    background-color: #fff;
+    color: #000;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .sfdcbtn {
+    margin-left: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  .formsection {
+    width: 80%;
+    margin-left: 10%;
+  }
+  .inputlabel {
+    font-size: 14px;
+  }
+  .inputlabel.causelabel {
+    width: 30%;
+    margin-bottom: 17px;
+    float: right;
+    font-size: 14px;
+  }
+  .pagetitle {
+    font-size: 32px;
+  }
+  .sfdcbtn {
+    width: 50%;
+    margin-left: 15%;
+  }
+}
+
+@media (max-width: 479px) {
+  .formsection {
+    width: 90%;
+    margin-left: 5%;
+  }
+  .submitbtn {
+    font-size: 15px;
+  }
+  .inputlabel {
+    font-size: 13px;
+  }
+  .inputlabel.causelabel {
+    width: 13%;
+    margin-bottom: 39px;
+  }
+  .iframeclass {
+    display: block;
+    font-size: 14px;
+  }
+  .pagetitle {
+    margin-right: 4%;
+    margin-left: 4%;
+    font-size: 27px;
+  }
+  .sfdcbtn {
+    width: 70%;
+    margin-left: 8%;
+  }
+  .backlink {
+    height: 120px;
+    padding-right: auto;
+    padding-left: auto;
+    text-align: left;
+  }
+  .backlink.w--current {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 25px;
+    font-size: 13px;
+    text-align: center;
+  }
+}
+
+
+
+.loader {
+  border: 16px solid #fff;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  position: absolute;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
