@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+ // title = 'app works!';
 
 
   ngOnInit() {
@@ -27,25 +27,54 @@ export class AppComponent {
        
        }
 
+       var getUrlParameterAnnoEmp = getParameterByName('AnnoEmp');
+
+       if (getUrlParameterAnnoEmp == null) {
+
+            $( "#AnnoEmp" ).val('Donar');
+
+          } else {
+
+            $( "#AnnoEmp" ).val(getUrlParameterAnnoEmp);
+
+        }
+
+        function getParameterByName(name) {
+            var url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }; 
+
+
   };
 
 
-  getParameterByName(name) {
-       var url = window.location.href;
-       name = name.replace(/[\[\]]/g, "\\$&");
-       var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-          results = regex.exec(url);
-       if (!results) return null;
-       if (!results[2]) return '';
-       return decodeURIComponent(results[2].replace(/\+/g, " "));
-  };  
+getParameterByName(name) {
+            var url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }; 
 
 
     
   initFormData() {
+
+      /*
     
           var getUrlParameterAnnoEmp = this.getParameterByName('AnnoEmp');
 
+          console.log("getUrlParameterAnnoEmp: ", getUrlParameterAnnoEmp);
+
+          */
+          
           var getUrlParameterHideCreditCardUserId = this.getParameterByName('HideCreditCardUserId');
           $( "#HideCreditCardUserId" ).val( getUrlParameterHideCreditCardUserId ); 
           var getUrlParameterHideCVV = this.getParameterByName('HideCVV');
@@ -58,7 +87,7 @@ export class AppComponent {
               localStorage.removeItem("specialRequest");
           }
 
-
+/*
           if (getUrlParameterAnnoEmp == null) {
 
             $( "#AnnoEmp" ).val('Donar');
@@ -68,7 +97,7 @@ export class AppComponent {
             $( "#AnnoEmp" ).val(getUrlParameterAnnoEmp);
 
           }
-
+*/
             var packageType = $( "#package" ).val();
             $( "#SumToBill" ).val( packageType ); 
 
@@ -145,6 +174,27 @@ export class AppComponent {
     
     };
     
+    
+    
+     Package_changed() {
+    
+	    var packageType = $( "#package" ).val(); 
+     
+        if (packageType == "0") {
+
+          $( "#AmountObj" ).fadeIn( "slow" );
+          
+          $( "#SumToBill" ).val( "" ); 
+
+        } else {
+
+          $( "#AmountObj" ).fadeOut( "slow" ); 
+          
+          $( "#SumToBill" ).val( packageType ); 
+
+        }
+  
+    };  
 
 
 
@@ -179,29 +229,7 @@ export class AppComponent {
       }
   
     };
-    
-    
-    
-    
-     Package_changed() {
-    
-	    var packageType = $( "#package" ).val(); 
-     
-        if (packageType == "0") {
 
-          $( "#AmountObj" ).fadeIn( "slow" );
-          
-          $( "#SumToBill" ).val( "" ); 
-
-        } else {
-
-          $( "#AmountObj" ).fadeOut( "slow" ); 
-          
-          $( "#SumToBill" ).val( packageType ); 
-
-        }
-  
-    };  
 
 
     
@@ -214,13 +242,7 @@ export class AppComponent {
     }; 
  
  
-   SFDCcmd_click() {
 
-          this.EvalDonaId();
-          
-          this.EvalDonaEmail()
-  
-    }; 
 
 
     EvalDonaId() {
@@ -252,13 +274,123 @@ export class AppComponent {
                     
                           localStorage.setItem("IDstatus","false");
                           
-                          this.Execute();
+                         // this.Execute();/////
+
+
+
+
+                              var IDstatus = localStorage.getItem("IDstatus");
+
+                              var emailstatus = localStorage.getItem("emailstatus");
+                              
+                              var currentProject = $( "#Project" ).val();
+                              $( "#ProductName" ).val(currentProject);       
+                              
+                              /////////// this.DefineDonationAmout();
+
+                              var packageType = $( "#package" ).val(); 
+                            
+                                if (packageType == "0") {
+                                
+                                  var AmountObj = $( "#AmountObj" ).val(); 
+                                  
+                                  $( "#SumToBill" ).val( AmountObj ); 
+
+                                } else {
+                                  
+                                  $( "#SumToBill" ).val( packageType ); 
+
+                                }
+
+                              ///////////////////////////////////////
+
+
+                                  if (IDstatus == 'true' && emailstatus == 'true') {
+
+                                  console.log("both True");
+
+                                  $("#IDNumStatus").fadeOut(100);
+
+                                  $("#emailStatus").fadeOut(100);
+
+                                  $( "#cmdPayNow" ).css('opacity', '0'); 
+
+                                  $( "#cmdPayNowPleaseWait" ).fadeIn( "slow" );
+                                  
+                                  $( "#shadingLayer" ).fadeIn( "slow" );
+
+                                  var donarID = $( "#donarid" ).val(); 
+
+                                  $( "#cardOwnerID" ).val(donarID);
+
+                                  var DonationTytpeInput = $( "#Donation_Type_id" ).val(); 
+
+                                  var DonationTypeTxt = $("#Donation_Type_id option:selected").text();
+
+                                  $( "#DonationType" ).val(DonationTypeTxt);
+
+                                      $.ajax({
+                                          url: 'http://nodapipub.azurewebsites.net/anno/QueryAnnoSFDC/',
+                                          type: 'post',
+                                          dataType: 'json',
+                                          data: $('#Donation').serialize(),
+                                          success: function(data) {
+                                              console.log(data);
+                                              localStorage.setItem("Execute","true");
+                                              $(location).attr('href',data);
+
+                                          }
+                                      });
+
+
+                                } else if (emailstatus == null && IDstatus == null) {
+
+                                    $("#emailStatus").fadeIn(100);
+
+                                    $("#IDNumStatus").fadeIn(100); 
+
+                                } else if (emailstatus == null && IDstatus == 'false') {
+
+                                    $("#emailStatus").fadeIn(100);
+
+                                    $("#IDNumStatus").fadeIn(100); 
+
+                                } else if (emailstatus == null && IDstatus == 'true') {
+
+                                    $("#emailStatus").fadeIn(100);
+
+                                    $("#IDNumStatus").fadeOut(100); 
+
+                                } else if (emailstatus == 'true' && IDstatus == null) {
+
+                                    $("#emailStatus").fadeOut(100);
+
+                                    $("#IDNumStatus").fadeIn(100); 
+
+                                } else if (emailstatus == 'true' && IDstatus == 'false') {
+
+                                    $("#emailStatus").fadeOut(100);
+
+                                    $("#IDNumStatus").fadeIn(100); 
+
+                                } else if (emailstatus == 'false' && IDstatus == 'false') {
+
+                                    $("#emailStatus").fadeIn(100);
+
+                                    $("#IDNumStatus").fadeIn(100); 
+
+                                }
+        
+
+
+
+                         ///////////////////////
                     
                     }
                     
             }
 
-    }
+    };
 
 
     EvalDonaEmail() {
@@ -273,7 +405,117 @@ export class AppComponent {
                         
                           localStorage.setItem("emailstatus",data);
                                             
-                          this.Execute();
+                         // this.Execute();/////
+
+
+
+
+                              var IDstatus = localStorage.getItem("IDstatus");
+
+                              var emailstatus = localStorage.getItem("emailstatus");
+                              
+                              var currentProject = $( "#Project" ).val();
+                              $( "#ProductName" ).val(currentProject);       
+                              
+                              /////////// this.DefineDonationAmout();
+
+                              var packageType = $( "#package" ).val(); 
+                            
+                                if (packageType == "0") {
+                                
+                                  var AmountObj = $( "#AmountObj" ).val(); 
+                                  
+                                  $( "#SumToBill" ).val( AmountObj ); 
+
+                                } else {
+                                  
+                                  $( "#SumToBill" ).val( packageType ); 
+
+                                }
+
+                              ///////////////////////////////////////
+
+
+                                  if (IDstatus == 'true' && emailstatus == 'true') {
+
+                                  console.log("both True");
+
+                                  $("#IDNumStatus").fadeOut(100);
+
+                                  $("#emailStatus").fadeOut(100);
+
+                                  $( "#cmdPayNow" ).css('opacity', '0'); 
+
+                                  $( "#cmdPayNowPleaseWait" ).fadeIn( "slow" );
+                                  
+                                  $( "#shadingLayer" ).fadeIn( "slow" );
+
+                                  var donarID = $( "#donarid" ).val(); 
+
+                                  $( "#cardOwnerID" ).val(donarID);
+
+                                  var DonationTytpeInput = $( "#Donation_Type_id" ).val(); 
+
+                                  var DonationTypeTxt = $("#Donation_Type_id option:selected").text();
+
+                                  $( "#DonationType" ).val(DonationTypeTxt);
+
+                                      $.ajax({
+                                          url: 'http://nodapipub.azurewebsites.net/anno/QueryAnnoSFDC/',
+                                          type: 'post',
+                                          dataType: 'json',
+                                          data: $('#Donation').serialize(),
+                                          success: function(data) {
+                                              console.log(data);
+                                              localStorage.setItem("Execute","true");
+                                              $(location).attr('href',data);
+
+                                          }
+                                      });
+
+
+                                } else if (emailstatus == null && IDstatus == null) {
+
+                                    $("#emailStatus").fadeIn(100);
+
+                                    $("#IDNumStatus").fadeIn(100); 
+
+                                } else if (emailstatus == null && IDstatus == 'false') {
+
+                                    $("#emailStatus").fadeIn(100);
+
+                                    $("#IDNumStatus").fadeIn(100); 
+
+                                } else if (emailstatus == null && IDstatus == 'true') {
+
+                                    $("#emailStatus").fadeIn(100);
+
+                                    $("#IDNumStatus").fadeOut(100); 
+
+                                } else if (emailstatus == 'true' && IDstatus == null) {
+
+                                    $("#emailStatus").fadeOut(100);
+
+                                    $("#IDNumStatus").fadeIn(100); 
+
+                                } else if (emailstatus == 'true' && IDstatus == 'false') {
+
+                                    $("#emailStatus").fadeOut(100);
+
+                                    $("#IDNumStatus").fadeIn(100); 
+
+                                } else if (emailstatus == 'false' && IDstatus == 'false') {
+
+                                    $("#emailStatus").fadeIn(100);
+
+                                    $("#IDNumStatus").fadeIn(100); 
+
+                                }
+        
+
+
+
+                         ///////////////////////
                           
                         });
                     
@@ -281,7 +523,117 @@ export class AppComponent {
                     
                           localStorage.setItem("emailstatus","false");
                           
-                          this.Execute();
+                         // this.Execute();/////
+
+
+
+
+                              var IDstatus = localStorage.getItem("IDstatus");
+
+                              var emailstatus = localStorage.getItem("emailstatus");
+                              
+                              var currentProject = $( "#Project" ).val();
+                              $( "#ProductName" ).val(currentProject);       
+                              
+                              /////////// this.DefineDonationAmout();
+
+                              var packageType = $( "#package" ).val(); 
+                            
+                                if (packageType == "0") {
+                                
+                                  var AmountObj = $( "#AmountObj" ).val(); 
+                                  
+                                  $( "#SumToBill" ).val( AmountObj ); 
+
+                                } else {
+                                  
+                                  $( "#SumToBill" ).val( packageType ); 
+
+                                }
+
+                              ///////////////////////////////////////
+
+
+                                  if (IDstatus == 'true' && emailstatus == 'true') {
+
+                                  console.log("both True");
+
+                                  $("#IDNumStatus").fadeOut(100);
+
+                                  $("#emailStatus").fadeOut(100);
+
+                                  $( "#cmdPayNow" ).css('opacity', '0'); 
+
+                                  $( "#cmdPayNowPleaseWait" ).fadeIn( "slow" );
+                                  
+                                  $( "#shadingLayer" ).fadeIn( "slow" );
+
+                                  var donarID = $( "#donarid" ).val(); 
+
+                                  $( "#cardOwnerID" ).val(donarID);
+
+                                  var DonationTytpeInput = $( "#Donation_Type_id" ).val(); 
+
+                                  var DonationTypeTxt = $("#Donation_Type_id option:selected").text();
+
+                                  $( "#DonationType" ).val(DonationTypeTxt);
+
+                                      $.ajax({
+                                          url: 'http://nodapipub.azurewebsites.net/anno/QueryAnnoSFDC/',
+                                          type: 'post',
+                                          dataType: 'json',
+                                          data: $('#Donation').serialize(),
+                                          success: function(data) {
+                                              console.log(data);
+                                              localStorage.setItem("Execute","true");
+                                              $(location).attr('href',data);
+
+                                          }
+                                      });
+
+
+                                } else if (emailstatus == null && IDstatus == null) {
+
+                                    $("#emailStatus").fadeIn(100);
+
+                                    $("#IDNumStatus").fadeIn(100); 
+
+                                } else if (emailstatus == null && IDstatus == 'false') {
+
+                                    $("#emailStatus").fadeIn(100);
+
+                                    $("#IDNumStatus").fadeIn(100); 
+
+                                } else if (emailstatus == null && IDstatus == 'true') {
+
+                                    $("#emailStatus").fadeIn(100);
+
+                                    $("#IDNumStatus").fadeOut(100); 
+
+                                } else if (emailstatus == 'true' && IDstatus == null) {
+
+                                    $("#emailStatus").fadeOut(100);
+
+                                    $("#IDNumStatus").fadeIn(100); 
+
+                                } else if (emailstatus == 'true' && IDstatus == 'false') {
+
+                                    $("#emailStatus").fadeOut(100);
+
+                                    $("#IDNumStatus").fadeIn(100); 
+
+                                } else if (emailstatus == 'false' && IDstatus == 'false') {
+
+                                    $("#emailStatus").fadeIn(100);
+
+                                    $("#IDNumStatus").fadeIn(100); 
+
+                                }
+        
+
+
+
+                         ///////////////////////
                     
                     }
 
@@ -289,7 +641,7 @@ export class AppComponent {
 
 
 
-    Execute() {
+   Execute() {
 
               var IDstatus = localStorage.getItem("IDstatus");
 
@@ -378,11 +730,11 @@ export class AppComponent {
                 }
           
           
-    }
+   };
 
 
 
-          DefineDonationAmout() {
+   DefineDonationAmout() {
 
               var packageType = $( "#package" ).val(); 
             
@@ -398,11 +750,17 @@ export class AppComponent {
 
                 }
           
-          }
+   };
 
 
 
-        
+   SFDCcmd_click() {
+
+          this.EvalDonaId();
+          
+          this.EvalDonaEmail()
+  
+    };         
 
 
 
